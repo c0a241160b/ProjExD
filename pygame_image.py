@@ -30,6 +30,8 @@ def main():
             kk_rct.move_ip((-1,0))
         if key_lst[pg.K_RIGHT]: #右
             kk_rct.move_ip((2,0))
+        if key_lst[pg.K_LEFT]:
+            kk_rct.move_ip((-2,0))
         if key_lst[pg.K_UP]: #上入力されたら
             kk_rct.move_ip((-1,-1)) #上に移動
         if key_lst[pg.K_DOWN]: #下
