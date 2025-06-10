@@ -26,18 +26,23 @@ def main():
         screen.blit(bg_img, [tmr+3200, 0])
         
         key_lst = pg.key.get_pressed()
-        if key_lst:
-            kk_rct.move_ip((-1,0))
-        if key_lst[pg.K_RIGHT]: #右
-            kk_rct.move_ip((2,0))
-        if key_lst[pg.K_LEFT]:
-            kk_rct.move_ip((-2,0))
-        if key_lst[pg.K_UP]: #上入力されたら
-            kk_rct.move_ip((-1,-1)) #上に移動
-        if key_lst[pg.K_DOWN]: #下
-            kk_rct.move_ip((-1,1))
         
-
+        x=0 #横移動の初期値を設定
+        y=0 #縦移動の初期値を設定
+        if key_lst: #入力がないとき
+            move=(x-1,0) #背景と同じ速度で左に動く
+        if key_lst[pg.K_RIGHT]: #右入力があるとき
+            x=1 #横移動の初期値を右に進むように設定
+            move=(x,y) #右に進む  
+        if key_lst[pg.K_LEFT]: #左入力があるとき
+            move=(x-2,y) #左に進む
+        if key_lst[pg.K_DOWN]: #下入力があるとき
+            y=1 #縦移動の初期値を下に進むように設定
+            move=(x-1,y) #左下に進む
+        if key_lst[pg.K_UP]: #上入力があるとき
+            move=(x-1,y-1) #左上に進む
+        kk_rct.move_ip(move) #動かす
+        
         screen.blit(kk_img, kk_rct)
         pg.display.update()
         tmr += -1
